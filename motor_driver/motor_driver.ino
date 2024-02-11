@@ -6,8 +6,8 @@
 
 
 //Pins used to control direction and speed of the motor. Speed pin should be a pwm pin.
-#define MotorDirection 4
-#define MotorSpeed 2
+#define Dir 7
+#define PWM 8
 
 int SpeedVal = 0;
 
