@@ -10,7 +10,7 @@ void setup() {
   //B rising pulse from encodenren activated ai1(). AttachInterrupt 1 is DigitalPin nr 3 on moust Arduino.
   attachInterrupt(1, ai1, RISING);
   }
-   
+
 void loop() {
 // Send the value of counter
 if( counter != temp ){
@@ -20,7 +20,7 @@ temp = counter;
 }
 
 void ai0() {
-// ai0 is activated if DigitalPin nr 2 is going from LOW to HIGH
+// ai0 is activated if DigitalPin nr 2 is goinqg from LOW to HIGH
 // Check pin 3 to determine the direction
 if(digitalRead(2)!=LOW) {
 counter++;
