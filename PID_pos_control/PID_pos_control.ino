@@ -19,7 +19,7 @@ void setup() {
 
 void loop() {
   // target position
-  int target = 3500*sin(prevT/1e6);
+  int target = 3000*sin(prevT/1e6);
   float kp = 1;
   float kd = 0.005;
   float ki = 0;

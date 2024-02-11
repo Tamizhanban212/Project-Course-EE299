@@ -6,8 +6,8 @@
 
 
 //Pins used to control direction and speed of the motor. Speed pin should be a pwm pin.
-#define Dir 7
-#define PWM 8
+#define MotorDirection 7
+#define MotorSpeed 8
 
 int SpeedVal = 0;
 
@@ -20,19 +20,8 @@ void setup() {
 void loop() {
   
   //Ramps up the speed in the clockwise direction.
-  digitalWrite(MotorDirection, LOW);                  //Loop increases the speed slowly until it reaches max speed.
-  for(SpeedVal = 0; SpeedVal < 255; SpeedVal++){
-      analogWrite(MotorSpeed,SpeedVal);
-      delay(40);
-  }
-  analogWrite(MotorSpeed,0);
-  //Ramps up the speed in the counter clockwise direction.  
-  digitalWrite(MotorDirection, HIGH);                //Loop increases the speed slowly until it reaches max speed.
-  for(SpeedVal = 0; SpeedVal < 255; SpeedVal++){
-      analogWrite(MotorSpeed,SpeedVal);
-      delay(40);
-  } 
-  analogWrite(MotorSpeed,0);
-  
+  digitalWrite(MotorDirection, 1);                  //Loop increases the speed slowly until it reaches max speed.
+  analogWrite(MotorSpeed,SpeedVal);
+
 }
 
