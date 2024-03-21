@@ -10,7 +10,7 @@
 #define MotorSpeed 8
 
 int SpeedVal = 0;
-
+int dir = 0;
 void setup() {
   //Declaration for the pins used, both should be outputs.
   pinMode(MotorDirection, OUTPUT);
@@ -20,7 +20,7 @@ void setup() {
 void loop() {
   
   //Ramps up the speed in the clockwise direction.
-  digitalWrite(MotorDirection, 1);                  //Loop increases the speed slowly until it reaches max speed.
+  digitalWrite(MotorDirection, dir);                  //Loop increases the speed slowly until it reaches max speed.
   analogWrite(MotorSpeed,SpeedVal);
 
 }

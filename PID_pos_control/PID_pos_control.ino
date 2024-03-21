@@ -20,8 +20,9 @@ void setup() {
 void loop() {
   // target position
   int target = 3000*sin(prevT/1e6);
+  // PID constants
   float kp = 1;
-  float kd = 0.005;
+  float kd = 0.025;//0.005;
   float ki = 0;
 
   long currT = micros();
@@ -29,7 +30,7 @@ void loop() {
   float deltaT = ((float)(currT-prevT))/1.0e6;
   prevT = currT;
 
-  int e = pos-target;
+  int e = target-pos;
   float dedt = (e-eprev)/(deltaT);
   eintegral = eintegral + e*deltaT;
 
@@ -47,7 +48,7 @@ void loop() {
 
   setMotor(dir,pwr,PWM,Dir);
 
-  eprev = e;
+  eprev = e; 
 
   Serial.print("Target:");
   Serial.print(target);
@@ -55,14 +56,14 @@ void loop() {
   Serial.print("MotorPos:");
   Serial.print(pos);
   Serial.println();
-  // setMotor(0,25,PWM,Dir);
-  // delay(200);
+  // setMotor(0,255,PWM,1);
+  // delay(2000);
   // Serial.println(pos);
-  // setMotor(1,25,PWM,Dir);
-  // delay(200);
+  // setMotor(1,255,PWM,Dir);
+  // delay(2000);
   // Serial.println(pos);
-  // setMotor(0,25,PWM,Dir);
-  // delay(200);
+  // setMotor(0,255,PWM,Dir);
+  // delay(2000);
   // Serial.println(pos);
 }
 
