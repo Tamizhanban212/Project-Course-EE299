@@ -22,8 +22,8 @@ void loop() {
   int target = 3000*sin(prevT/1e6);
   // PID constants
   float kp = 1;
-  float kd = 0.025;//0.005;
-  float ki = 0;
+  float kd = 0;
+  float ki = 10;
 
   long currT = micros();
 

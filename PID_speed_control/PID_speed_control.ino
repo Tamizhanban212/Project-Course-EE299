@@ -129,7 +129,7 @@ void loop()
   v1Filt = lp.filt(v1);
   
   // Set target speed
-  float vt = 40*(sin(currT/1e6)>0);
+  float vt = 10*(sin(currT/1e6)>0);
 
   // control signal equation u
   float kp = 3;
