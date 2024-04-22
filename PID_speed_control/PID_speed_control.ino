@@ -104,6 +104,8 @@ void setup() {
   pinMode(ENCB,INPUT);
   pinMode(Dir, OUTPUT);
   pinMode(PWM, OUTPUT);
+  setMotor(0, 0, PWM, Dir);
+  delay(2000);
   attachInterrupt(digitalPinToInterrupt(ENCA), readEncoder, RISING);
 }
 
@@ -118,22 +120,22 @@ void loop()
   ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
     pos = pos_i;
     // velocity2 = velocity_i;
-  } 
+  }
 
   long currT = micros();
   float deltaT = ((float) (currT-prevT))/1.0e6;
   float velocity1 = (pos - posPrev)/deltaT;
   posPrev = pos;
   prevT = currT;
-  float v1 = velocity1/19500*60.0;
+  float v1 = velocity1/28754.0*60.0;
   v1Filt = lp.filt(v1);
   
   // Set target speed
-  float vt = 10*(sin(currT/1e6)>0);
+  float vt = 100;
 
   // control signal equation u
-  float kp = 3;
-  float ki = 40;
+  float kp = 0.7;
+  float ki = 0.04;
   float e = vt-v1Filt;
   eintegral = eintegral + e*deltaT;
   
@@ -168,10 +170,10 @@ void readEncoder(){
   int b = digitalRead(ENCB);
   int increment = 0;
   if (b>0){
-    increment = +1; // since ENCB would have already be triggered on clockwise direction
+    increment = -1; // since ENCB would have already be triggered on clockwise direction
   }
   else{
-    increment = -1;
+    increment = 1;
   }
   pos_i = pos_i + increment;
 

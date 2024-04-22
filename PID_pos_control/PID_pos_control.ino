@@ -19,11 +19,11 @@ void setup() {
 
 void loop() {
   // target position
-  int target = 3000*sin(prevT/1e6);
+  int target = 1200;//*sin(prevT/1e6);
   // PID constants
-  float kp = 1;
+  float kp = 0.067;
   float kd = 0;
-  float ki = 10;
+  float ki = 0;
 
   long currT = micros();
 
@@ -37,13 +37,13 @@ void loop() {
   float u = kp*e + kd*dedt + ki*eintegral;
   
   float pwr = fabs(u);
-  if (pwr>255){
-    pwr = 255;
+  if ((pwr>30)){
+    pwr = 30;
   }
 
-  int dir = 1;
+  int dir = 0;
   if(u<0){
-    dir = 0;
+    dir = 1;
   }
 
   setMotor(dir,pwr,PWM,Dir);
